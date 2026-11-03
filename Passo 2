@@ -1,0 +1,32 @@
+arquivo = open("notas.txt", "r", encoding="utf-8")
+linhas = arquivo.readlines()
+arquivo.close()
+
+# limpa os 3 arquivos
+open("aprovados.txt", "w").close()
+open("exame.txt", "w").close()
+open("reprovados.txt", "w").close()
+
+for linha in linhas:
+    partes = linha.strip().split(";")
+    nome = partes[0]
+    n1 = float(partes[1])
+    n2 = float(partes[2])
+    n3 = float(partes[3])
+    media = (n1 + n2 + n3) / 3
+
+    if media >= 7:
+        resultado = "Aprovado"
+        nome_arq = "aprovados.txt"
+    elif media >= 5:
+        resultado = "Exame"
+        nome_arq = "exame.txt"
+    else:
+        resultado = "Reprovado"
+        nome_arq = "reprovados.txt"
+
+    arq = open(nome_arq, "a", encoding="utf-8")
+    arq.write(f"{nome};{n1};{n2};{n3};{media:.1f};{resultado}\n")
+    arq.close()
+
+print("Arquivos aprovados.txt, exame.txt e reprovados.txt criados")
