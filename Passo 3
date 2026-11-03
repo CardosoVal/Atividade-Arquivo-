@@ -1,0 +1,25 @@
+arquivo = open("exame.txt", "r", encoding="utf-8")
+linhas = arquivo.readlines()
+arquivo.close()
+
+for linha in linhas:
+    partes = linha.strip().split(";")
+    nome = partes[0]
+    media_ant = float(partes[4])
+
+    print(f"Aluno: {nome} - Media: {media_ant}")
+    nota_exame = float(input(f"Nota do exame do {nome}: "))
+
+    media_final = (media_ant + nota_exame) / 2
+
+    if media_final >= 5:
+        legenda = "Aprovado apos exame"
+        nome_arq = "aprovados.txt"
+    else:
+        legenda = "Reprovado apos exame"
+        nome_arq = "reprovados.txt"
+
+    arq = open(nome_arq, "a", encoding="utf-8")
+    arq.write(f"{nome};{media_final:.1f};{legenda}\n")
+    arq.close()
+    print(legenda)
