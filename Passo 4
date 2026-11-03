@@ -1,0 +1,9 @@
+print("=== LISTA DE APROVADOS ===")
+arquivo = open("aprovados.txt", "r", encoding="utf-8")
+print(arquivo.read())
+arquivo.close()
+
+print("=== LISTA DE REPROVADOS ===")
+arquivo = open("reprovados.txt", "r", encoding="utf-8")
+print(arquivo.read())
+arquivo.close()
